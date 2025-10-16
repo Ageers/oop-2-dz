@@ -4,9 +4,9 @@ public class Student {
 
     private String Student;
 
-    public Student(String student, School.Mark[] mark) {
+    public Student(String student) {
         Student = student;
-        this.mark = mark;
+
     }
 
     private Mark mark[] = {
