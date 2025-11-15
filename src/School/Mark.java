@@ -6,6 +6,10 @@ public class Mark {
     private String subject;
 
     public Mark(int value, String subject) {
+        if (value < 2 || value > 5){
+            throw new IllegalArgumentException("please input objective value >= 2 or <= 5");
+        }
+
         this.value = value;
         this.subject = subject;
     }
