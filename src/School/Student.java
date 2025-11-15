@@ -1,7 +1,5 @@
 package School;
 
-import java.util.Arrays;
-
 public class Student {
 
     private String fullName;
