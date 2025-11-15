@@ -12,15 +12,18 @@ public class Student {
 
     public Student(String fullName, int marksCapasity) {
         this.fullName = fullName;
-        this.marksCapasity = marksCapasity;
+        this.marks = new Mark[marksCapasity];
+        this.size = 0;
     }
 
     public String getFullName() {
+
         return fullName;
     }
 
     public int marksCount(){
-        return marks.length;
+
+        return size;
     }
 
     public boolean isMarkFull(boolean markFull){
@@ -30,28 +33,29 @@ public class Student {
         return false;
     }
 
-    /**
-     * Не понятно как перезаписать массив объектов оценки в double;
-     *
-     *
-     */
+    public boolean isMarksFull() {
+        return size >= marks.length;
+    }
 
+    public boolean addMark(Mark mark) {
+        if (mark == null) return false;
+        if (isMarksFull()) return false;
+        marks[size++] = mark;
+        return true;
+    }
 
-    public double average(Mark[] marks){
-        for (int i = 0; i < this.marks.length; i++){
-            System.out.println(marks[i]);
+    public double average() {
+        if (size == 0) return 0.0;
+        int sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += marks[i].getValue();
         }
-        return 0.0 ;
-        }
+        return (double) sum / size;
+    }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "fullName='" + fullName + '\'' +
-                ", marks=" + Arrays.toString(marks) +
-                ", size=" + size +
-                ", marksCapasity=" + marksCapasity +
-                '}';
+        return fullName + " (ср. балл: " + String.format("%.2f", average()) + ")";
     }
 
 }
